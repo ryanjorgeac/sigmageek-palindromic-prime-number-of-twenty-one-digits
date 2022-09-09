@@ -1,4 +1,4 @@
-from piGenerator import piGenerator
+import piGenerator
 from isPalindromic import isPalindromic
 from isPrime import isPrime
 from twentyOneDigitsGenerator import twentyOneDigitsGenerator
