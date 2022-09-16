@@ -2,12 +2,15 @@
 
 def twentyOneDigitsGenerator(piGenerator):
 
-    proxNumber = int(piGenerator[:21])
+    proxNumber = 0
+    for i in range(21):
+        nextDigit = next(piGenerator)
+        proxNumber = proxNumber * 10 + nextDigit
 
     yield proxNumber
 
-    for digitString in piGenerator[21:]:
-        proxNumber = proxNumber%(10**20)
-        proxNumber = proxNumber*10+int(digitString)
+    for d in piGenerator:
+        proxNumber = proxNumber % (10 ** 20)
+        proxNumber = proxNumber * 10 + d
         yield proxNumber
 
