@@ -1,9 +1,12 @@
 import requests
 
-def piGenerator(start):
+def piGenerator(start, length):
     startPlace = start
-    while True:
-        request = requests.get(f'https://api.pi.delivery/v1/pi?start={startPlace}&numberOfDigits=1000')
+    remainingDigits = length
+    while remainingDigits > 0:
+        sizeOfDigits = min(remainingDigits, 1000)
+        request = requests.get(f'https://api.pi.delivery/v1/pi?start={startPlace}&numberOfDigits={sizeOfDigits}')
         for i in request.json()['content']:
             yield int(i)
-        startPlace = startPlace + 1000
+        startPlace = startPlace + sizeOfDigits
+        remainingDigits -= sizeOfDigits
