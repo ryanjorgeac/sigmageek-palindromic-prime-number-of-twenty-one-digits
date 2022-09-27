@@ -8,5 +8,5 @@ def piGenerator(start, length):
         request = requests.get(f'https://api.pi.delivery/v1/pi?start={startPlace}&numberOfDigits={sizeOfDigits}')
         for i in request.json()['content']:
             yield int(i)
-        startPlace = startPlace + sizeOfDigits
+        startPlace += sizeOfDigits
         remainingDigits -= sizeOfDigits
