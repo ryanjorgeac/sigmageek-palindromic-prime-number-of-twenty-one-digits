@@ -5,6 +5,9 @@ def anyNumberOfDigitsGenerator(piGenerator, numberOfDigits):
     for i in range(numberOfDigits):
         nextDigit = next(piGenerator)
         proxNumber = proxNumber * 10 + nextDigit
+        while proxNumber == 0:
+            nextDigit = next(piGenerator)
+            proxNumber = proxNumber * 10 + nextDigit
 
     yield proxNumber
 
