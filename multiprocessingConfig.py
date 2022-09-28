@@ -3,16 +3,9 @@ from multiprocessing import Pool
 import time
 import isPalindromic
 import isPrime
+from hasNDigits import hasNDigits
 import piGenerator
 import anyNumberOfDigitsGenerator
-
-
-def moreMillion():
-    million = 1000000
-    yield million
-    while True:
-        million += 1000000
-        yield million
 
 
 def findPalindromicInPi(start, end, numberOfDigits):
@@ -20,47 +13,30 @@ def findPalindromicInPi(start, end, numberOfDigits):
     x = anyNumberOfDigitsGenerator.anyNumberOfDigitsGenerator(generator, numberOfDigits)
     i = start
     for number in x:
-        if isPrime.isPrime(number):
-            if isPalindromic.isPalindromic(number):
-                print(i)
-                print("Palindromic and prime found: ", number)
-                break
+        assert hasNDigits(number, numberOfDigits)
+        if isPrime.isPrime(number) and isPalindromic.isPalindromic(number):
+            print("Palindromic and prime found: ", number, " and your position::: ", i)
+            break
         i += 1
 
 
 if __name__ == "__main__":
-    # with Pool(3) as p:
-    #
-    #     generator = piGenerator.piGenerator(0, moreMillion().__next__())
-    #     x = anyNumberOfDigitsGenerator.anyNumberOfDigitsGenerator(generator, 9)
-    #     i = 0
-    #     for number in x:
-    #         if number % 2 != 0:
-    #             if number % 5 != 0:
-    #                 if isPalindromic.isPalindromic(number) and isPrime.isPrime(number):
-    #                     print("Position::::::: ",i)
-    #                     print("Palindromic and prime Founder: ", number)
-    #                     print("Time: ", time.time())
-    #                     break
-    #
-    #         elif i == 1000000:
-    #             print(number, "position: ", i)
-    #             print("Time (more million): ", time.time())
-    #             break
-    #         i += 1]
     start = time.perf_counter()
+    with Pool() as p:
+        # use the apply function
+        pass
 
-    # p1 = multiprocessing.Process(target=findPalindromicInPi(0, 100, 4))
-    p2 = multiprocessing.Process(target=findPalindromicInPi(0, 150000, 9))
-    # p3 = multiprocessing.Process(target=findPalindromicInPi(100000, 150000, 4))
+    p1 = multiprocessing.Process(target=findPalindromicInPi, args=(0, 100000, 5))
+    p2 = multiprocessing.Process(target=findPalindromicInPi, args=(100000, 200000, 5))
+    p3 = multiprocessing.Process(target=findPalindromicInPi, args=(100000, 300000, 5))
 
-    # p1.start()
+    p1.start()
     p2.start()
-    # p3.start()
+    p3.start()
 
-    # p1.join()
+    p1.join()
     p2.join()
-    # p3.join()
+    p3.join()
 
     finish = time.perf_counter()
 
