@@ -1,3 +1,4 @@
+from hasNDigits import hasNDigits
 
 def anyNumberOfDigitsGenerator(piGenerator, numberOfDigits):
 
@@ -5,17 +6,14 @@ def anyNumberOfDigitsGenerator(piGenerator, numberOfDigits):
     for i in range(numberOfDigits):
         nextDigit = next(piGenerator)
         proxNumber = proxNumber * 10 + nextDigit
-        while proxNumber == 0:
-            nextDigit = next(piGenerator)
-            proxNumber = proxNumber * 10 + nextDigit
 
-    yield proxNumber
+    if hasNDigits(proxNumber, numberOfDigits):
+        yield proxNumber
 
     for d in piGenerator:
         proxNumber = proxNumber % (10 ** (numberOfDigits-1))
         proxNumber = proxNumber * 10 + d
-        if proxNumber % (10 ** (numberOfDigits-1)) == proxNumber:
-            continue
+        if hasNDigits(proxNumber, numberOfDigits):
+            yield proxNumber
 
-        yield proxNumber
 
