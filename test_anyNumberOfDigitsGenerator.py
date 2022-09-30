@@ -27,7 +27,7 @@ def test_number_with_zero_on_the_road():
     x = anyNumberOfDigitsGenerator(generator, 2)
     z = x.__next__()
     y = x.__next__()
-    assert z == 10 and y == 23
+    assert z == 10 and y == 2
 
 def test_number_starting_with_zero():
     generator = fakeGenerator([0, 1, 2, 3, 4, 5])
@@ -40,13 +40,13 @@ def test_number_starting_with_two_zeros():
     generator = fakeGenerator([0, 0, 2, 3, 4, 5])
     x = anyNumberOfDigitsGenerator(generator, 2)
     z = x.__next__()
-    assert z == 23
+    assert z == 2
 
 def test_number_starting_with_three_zeros():
     generator = fakeGenerator([0, 0, 0, 3, 4, 5])
     x = anyNumberOfDigitsGenerator(generator, 2)
     z = x.__next__()
-    assert z == 34
+    assert z == 0
 
 if __name__ == "__main__":
     test_number_starting_with_two_zeros()

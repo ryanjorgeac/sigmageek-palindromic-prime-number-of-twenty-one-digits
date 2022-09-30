@@ -13,7 +13,6 @@ def anyNumberOfDigitsGenerator(piGenerator, numberOfDigits):
     for d in piGenerator:
         proxNumber = proxNumber % (10 ** (numberOfDigits-1))
         proxNumber = proxNumber * 10 + d
-        if hasNDigits(proxNumber, numberOfDigits):
-            yield proxNumber
+        yield proxNumber
 
 
