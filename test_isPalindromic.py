@@ -25,6 +25,10 @@ def test_isPalindromic_correct5():
     x = isPalindromic(11)
     assert x == True
 
+def test_isPalindromic_correct6():
+    x = isPalindromic(1441)
+    assert x == True
+
 
 def test_isPalindromic_false1():
     x = isPalindromic(123)
