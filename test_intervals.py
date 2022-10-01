@@ -29,3 +29,5 @@ def test_intervals_insertSucess_2():
     y = x.insertSuccess(i.inputlist[0], i.inputlist[1], i.inputlist[2])
     assert len(i.outputlist) == 0
 
+if __name__ == "__main__":
+    test_intervals_insertSucess_2()
