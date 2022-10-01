@@ -4,8 +4,7 @@ from aggregateNumbers import aggregateNumbers
 from poolArgsGenerator import poolArgsGenerator
 from findPalindromicInPi import findPalindromicInPi
 
-if __name__ == "__main__":
-    start = time.perf_counter()
+def multiprocessing():
     argsGenerator = poolArgsGenerator(21)
     interval = next(argsGenerator)
     with Pool() as p:
